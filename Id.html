@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <?!= include('css'); ?>
+</head>
+
+<body>
+    <div>
+        <a class="button" href="https://sites.google.com/unitech.jp/system/home">戻る</a>
+    </div>
+    <table>
+        <tr>
+            <th>名称</th>
+            <th>管理番号</th>
+            <th>長さ(m)</th>
+            <th>使用状態</th>
+        </tr>
+        <tr>
+            <td><?= data[0][0] ?></td>
+            <td><?= data[0][1] ?></td>
+            <td><?= data[0][2] ?></td>
+            <td>
+                <div class=<?= stateClass ?>><?= data[0][5] ?></div>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <a class="button"
+            href="https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec?id=<?=data[0][1] ?>&pages=action&action=use">使用する</a>
+        <a class="button"
+            href="https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec?id=<?=data[0][1] ?>&pages=action&action=unuse">未使用にする</a>
+    </div>
+    <div class="img-wrapper">
+        <img class="object-img" src="https://drive.google.com/uc?id=<?=data[0][3] ?>" alt=<?=data[0][0] ?> \>
+    </div>
+</body>
+
+</html>
