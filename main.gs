@@ -29,19 +29,14 @@ function doGet(e) {
         var data = getData(e.parameter.id, ID_COLUMN)
         html.data = data;
         html.stateClass = getStateClassName(data[0][5])
-        
     }
-  
-
     return html.evaluate();
 }
 
 
-function getList() {
-  
-  var ssId =　PropertiesService.getScriptProperties().getProperty('SSID');
+function getList() { 
+    var ssId =　PropertiesService.getScriptProperties().getProperty('SSID');
     var ss = SpreadsheetApp.openById(ssId);
-
     var sheetName = 'シート1';
     var values = ss.getSheetByName(sheetName).getDataRange().getValues();
 
@@ -52,6 +47,7 @@ function getList() {
 function include(filename) {
     return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
+
 function findRow(val, col) {
     var ssId =　PropertiesService.getScriptProperties().getProperty('SSID');
     var ss = SpreadsheetApp.openById(ssId);
@@ -95,4 +91,12 @@ function getStateClassName(state) {
     } else {
         return "unusing"
     }
+}
+
+function getUserForm(state){
+      if (state == "使用中") {
+        return HtmlService.createHtmlOutputFromFile("unuse.html").getContent();
+    } else {
+        return HtmlService.createHtmlOutputFromFile("use.html").getContent();
+    }  
 }
