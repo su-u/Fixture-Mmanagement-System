@@ -13,13 +13,14 @@ function doGet(e) {
         html = HtmlService.createTemplateFromFile('Id.html');
         var data = getData(e.parameter.id, ID_COLUMN)
         html.data = data;
-        html.stateClass = getStateClassName(data[0][5])
+        html.stateClass = getStateClassName(data[0][5]);
+        html.id = data[0][1];
 
     } else {
         html = HtmlService.createTemplateFromFile('Id.html');
         var data = getData(e.parameter.id, ID_COLUMN)
         html.data = data;
-        html.stateClass = getStateClassName(data[0][5])
+        html.stateClass = getStateClassName(data[0][5]);
     }
     return html.evaluate();
 }
@@ -70,7 +71,7 @@ function findRow(val, col) {
 }
 
 function doUse(name, purpose, return_data){
-    
+
 }
 
 function doUnUse(storage){
@@ -114,10 +115,14 @@ function getStateClassName(state) {
     }
 }
 
-function getUserForm(state){
-      if (state == "使用中") {
-        return HtmlService.createHtmlOutputFromFile("unuse.html").getContent();
+function getUserForm(state, id){
+    if (state == "使用中") {
+        var html = HtmlService.createHtmlOutputFromFile("use.html");
+        html.id = 001;
+        return html.getContent();
     } else {
-        return HtmlService.createHtmlOutputFromFile("use.html").getContent();
+        var html = HtmlService.createHtmlOutputFromFile("unuse.html");
+        html.id = 001;
+        return html.getContent();
     }  
 }
