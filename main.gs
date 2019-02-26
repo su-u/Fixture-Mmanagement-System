@@ -1,19 +1,10 @@
 var ID_COLUMN = 2
 var STATE_COLUM = 6
 
-function StateString(state){
-    if(state == "use"){
-        return "使用中";
-    }else{
-        return "未使用";
-    }
-}
-
 function doGet(e) {
     var html = HtmlService.createTemplateFromFile('List.html');
     if (e.parameter.id == undefined) {
-        html = HtmlService.createTemplateFromFile('List.html');
-      
+    
     } else if(e.parameter.pages == "action"){
         doAction(e.parameter.id, ID_COLUMN, e.parameter.action);
         html = HtmlService.createTemplateFromFile('Id.html');
@@ -21,7 +12,7 @@ function doGet(e) {
         html.data = data;
         html.stateClass = getStateClassName(data[0][5])
 
-    }else{
+    } else {
         html = HtmlService.createTemplateFromFile('Id.html');
         var data = getData(e.parameter.id, ID_COLUMN)
         html.data = data;
@@ -30,6 +21,21 @@ function doGet(e) {
     return html.evaluate();
 }
 
+function doPost(e){
+    if (e.parameter.name == undefined) {
+        //返却申請
+        doUnUse();
+    } else {
+        //借用申請
+        doUse();
+    }
+
+    var html = HtmlService.createTemplateFromFile('Id.html');
+    var data = getData(e.parameter.id, ID_COLUMN)
+    html.data = data;
+    html.stateClass = getStateClassName(data[0][5])
+    return html.evaluate();
+}
 
 function getList() { 
     var ssId =　PropertiesService.getScriptProperties().getProperty('SSID');
@@ -39,7 +45,6 @@ function getList() {
 
     return values;
 }
-
 
 function include(filename) {
     return HtmlService.createHtmlOutputFromFile(filename).getContent();
@@ -59,6 +64,14 @@ function findRow(val, col) {
         }
     }
     return 0;
+}
+
+function doUse(){
+
+}
+
+function doUnUse(){
+
 }
 
 function getData(val, col){
@@ -81,6 +94,14 @@ function doAction(val, col, state){
     sheet.getRange( i + 1, STATE_COLUM, 1, 1 ).setValue(StateString(state));
 }
 
+
+function StateString(state){
+    if(state == "use"){
+        return "使用中";
+    }else{
+        return "未使用";
+    }
+}
 
 function getStateClassName(state) {
     if (state == "使用中") {
