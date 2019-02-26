@@ -38,7 +38,8 @@ function getSheet(sheetName){
 }
 
 function getList() { 
-    return getSheet();
+    var sheet = getSheet("シート1");
+    return sheet.getDataRange().getValues();
 }
 
 function include(filename) {
