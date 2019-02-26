@@ -26,12 +26,21 @@
             </td>
         </tr>
     </table>
+    <table>
+        <tr>
+            <th>使用責任者</th>
+            <th>使用目的</th>
+            <th>返却予定日</th>
+            <th>保管場所</th>
+        </tr>
+        <tr>
+            <td><?= data[0][6] ?></td>
+            <td><?= data[0][7] ?></td>
+            <td><?= getDate(data[0][8]) ?></td>
+            <td><?= data[0][9] ?></td>
+        </tr>
+    </table>
     <div>
-        <a class="button"
-            href="https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec?id=<?=data[0][1] ?>&pages=action&action=use">使用する</a>
-        <a class="button"
-            href="https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec?id=<?=data[0][1] ?>&pages=action&action=unuse">未使用にする</a>
-
         <form action="https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec"
             method="get">
             <div class="fieldWrapper">
@@ -42,7 +51,7 @@
                 <p>使用目的：<input type="text" name="purpose" size="20" /></p>
                 <p>返却予定日：<input type="text" name="date" size="20" /></p>
                 <div class="formsend">
-                    <input type="submit" value="送信">
+                    <input type="submit" value="使用する">
                 </div>
             </div>
         </form>

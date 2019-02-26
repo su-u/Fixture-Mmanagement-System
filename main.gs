@@ -2,7 +2,8 @@ var ID_COLUMN = 2;
 var STATE_COLUM = 6;
 var NAME = 7;
 var PURPOSE = 8;
-var RETURN_DATE = 9;
+var ALL_COLUMS = 10;
+var DATE_COLUM = 9;
 
 function doGet(e) {
     var html = HtmlService.createTemplateFromFile('List.html');
@@ -59,11 +60,12 @@ function findRow(val, col, data) {
 
 
 function getData(val, col){
-    const spcol = 6;
     var sheet = getSheet("シート1");
     var data = sheet.getDataRange().getValues();
     var i = findRow(val, col, data);
-    return sheet.getRange(i + 1, 1, 1, spcol).getValues();
+  
+    var val = sheet.getRange(i + 1, 1, 1, ALL_COLUMS).getValues();
+    return val;
 }
 
 function doUseAction(val, state, name, purpose, date){
@@ -71,7 +73,7 @@ function doUseAction(val, state, name, purpose, date){
     var data = sheet.getDataRange().getValues();
   
     var i = findRow(val, ID_COLUMN, data);
-    var data =  [[StateReverseString(state), name, purpose, date,""]];
+    var data =  [[StateReverseString(state), name, purpose, date, ""]];
     sheet.getRange( i + 1, STATE_COLUM, 1, 5 ).setValues(data);
 }
 
@@ -108,3 +110,8 @@ function getUserForm(state){
     }
 }
 
+function getDate(date){
+  if(date == "")return "";
+ return Utilities.formatDate(new Date(date), "JST","yyyy/MM/dd");
+  
+}
