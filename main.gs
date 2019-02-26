@@ -1,3 +1,6 @@
+var ID_COLUMN = 2
+var STATE_COLUM = 6
+
 function StateString(state){
     if(state == "use"){
         return "使用中";
@@ -6,25 +9,19 @@ function StateString(state){
     }
 }
 
-var ID_COLUMN = 2
-var STATE_COLUM = 6
-
 function doGet(e) {
     var html = HtmlService.createTemplateFromFile('List.html');
     if (e.parameter.id == undefined) {
-      
         html = HtmlService.createTemplateFromFile('List.html');
       
     } else if(e.parameter.pages == "action"){
-      
-      doAction(e.parameter.id, ID_COLUMN, e.parameter.action);
-      html = HtmlService.createTemplateFromFile('Id.html');
-      var data = getData(e.parameter.id, ID_COLUMN)
-      html.data = data;
-      html.stateClass = getStateClassName(data[0][5])
-      
+        doAction(e.parameter.id, ID_COLUMN, e.parameter.action);
+        html = HtmlService.createTemplateFromFile('Id.html');
+        var data = getData(e.parameter.id, ID_COLUMN)
+        html.data = data;
+        html.stateClass = getStateClassName(data[0][5])
+
     }else{
-      
         html = HtmlService.createTemplateFromFile('Id.html');
         var data = getData(e.parameter.id, ID_COLUMN)
         html.data = data;
