@@ -2,22 +2,22 @@
 <html>
 
 <head>
-    <base target="_top">
-    <?!= include('css'); ?>
+  <base target="_top">
+  <?!= include('css'); ?>
 </head>
 
 <body>
-    <?
+  <?
       var data = getList();
     ?>
-    <table>
-        <tr>
-            <th><?= data[0][0] ?></th>
-            <th><?= data[0][1] ?></th>
-            <th><?= data[0][2] ?></th>
-            <th><?= data[0][5] ?></th>
-        </tr>
-        <?
+  <table>
+    <tr>
+      <th><?= data[0][0] ?></th>
+      <th><?= data[0][1] ?></th>
+      <th><?= data[0][2] ?></th>
+      <th><?= data[0][5] ?></th>
+    </tr>
+    <?
           for(var i = 1, l = data.length; i < l; i++) {
             output.append('<tr>');
             output.append('<td>' + data[i][0] + '</td>');
@@ -28,7 +28,7 @@
             output.append('</tr>');
           }
         ?>
-    </table>
+  </table>
 </body>
 
 </html>
