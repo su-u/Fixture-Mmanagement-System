@@ -1,5 +1,8 @@
-var ID_COLUMN = 2
-var STATE_COLUM = 6
+var ID_COLUMN = 2;
+var STATE_COLUM = 6;
+var NAME = 7;
+var PURPOSE = 8;
+var RETURN_DATE = 9;
 
 function doGet(e) {
     var html = HtmlService.createTemplateFromFile('List.html');
@@ -66,11 +69,11 @@ function findRow(val, col) {
     return 0;
 }
 
-function doUse(){
-
+function doUse(name, purpose, return_data){
+    
 }
 
-function doUnUse(){
+function doUnUse(storage){
 
 }
 
