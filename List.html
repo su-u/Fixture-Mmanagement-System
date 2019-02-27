@@ -14,19 +14,18 @@
     <tr>
       <th><?= data[0][0] ?></th>
       <th><?= data[0][1] ?></th>
-      <th><?= data[0][2] ?></th>
       <th><?= data[0][5] ?></th>
-      <th><?= data[0][9] ?></th>
+      <th class="place"><?= data[0][9] ?></th>
+      <th>詳細</th>
     </tr>
     <?
           for(var i = 1, l = data.length; i < l; i++) {
             output.append('<tr>');
             output.append('<td>' + data[i][0] + '</td>');
             output.append('<td>' + data[i][1] + '</td>');
-            output.append('<td>' + data[i][2] + '</td>');
             output.append('<td><div class=' + getStateClassName(data[i][5]) + '>' + data[i][5] + '</div></td>');
-            output.append('<td>' + data[i][9] + '</td>');
-            output.append("<td><a class=\"button\" href=\"https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec?id=" + data[i][1] + "\">詳細ページへ</a></td>");
+            output.append('<td class="place">' + data[i][9] + '</td>');
+            output.append("<td><a class=\"button\" href=\"https://script.google.com/macros/s/AKfycbwC4ZJKe7Y00T45sv0TE2ereHzI6mClHT6aUSurenWS8okOkAAf/exec?id=" + data[i][1] + "\">詳細</a></td>");
             output.append('</tr>');
           }
         ?>
